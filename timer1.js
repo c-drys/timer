@@ -1,14 +1,21 @@
-
 var args = process.argv.slice(2);
-
-const timer = function(duration) {
-
-  if(duration <= 0 || isNaN(duration)) {
-  return;
+// console.log(args);
+const timer = function(inputArray, index = 0) {
+  // console.log(inputArray);
+  if(inputArray.length < 1 || inputArray.length === index) {
+    return;
   }
-  setTimeout(() => {
-    process.stdout.write('\x07');
-  }, duration);
+  if(typeof(Number(inputArray[index])) === 'number') {
+    const duration = inputArray[index];
+    
+    setTimeout(() => {
+        console.log(`It's time!`);
+      }, duration * 1000);
+
+    timer(inputArray, index+1);
+  }
+
+
 }
 
-timer(args);
+timer(args);  
